@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const gameState = new Array(9).fill(null);
 
+    let CurrentPlayer = "X";
+
     for (let i =0 ; i < squares.length; i++) {
         squares[i].classList.add("square");
 
@@ -16,8 +18,15 @@ document.addEventListener("DOMContentLoaded", function() {
             squares[i].textContent = currentPlayer;
             squares[i].classList.add(currentPlayer);
             gameState[i] = currentPlayer;
-
             currentPlayer = currentPlayer === "X" ? "O" : "X";
+        });
+
+        squares[i].addEventListener("mouseover", function(){
+            squares[i].classList.add("hover");
+        });
+
+        squares[i].addEventListener("mouseout", function(){
+            squares[i].classList.remove("hover");
         });
     }
 });
