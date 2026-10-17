@@ -2,6 +2,10 @@
 
 document.addEventListener("DOMContentLoaded", function() {
     const squares = document.querySelectorAll("#board > div");
+    const status = document.getElementById("status");
+    const newGameButton = document.querySelector(".btn");
+
+    const originalMessage = status.textContent;
 
     const gameState = new Array(9).fill(null);
 
@@ -58,5 +62,19 @@ document.addEventListener("DOMContentLoaded", function() {
             squares[i].classList.remove("hover");
         });
     }
+
+    newGameButton.addEventListener("click", function() {
+        for (let i = 0; i < squares.length; i++) {
+            squares[i].textContent = "";
+            squares[i].classList.remove("X", "O");
+            gameState[i] = null;
+        }
+
+        status.textContent = originalMessage;
+        status.classList.remove("winner");
+        
+        currentPlayer = "X";
+        gameOver = false;
+    });
 });
 
